@@ -6,7 +6,6 @@ from collections import Counter
 
 # First, we define the number of balls that will fill the container, the player's score, and the last removed item.
 number = 0
-score = 0
 removed = []
 results = []
 
@@ -55,17 +54,18 @@ def remove_ball(ball_container, placeholder):
 # Initialization scope: this should run while there are no balls in the container.
 while number == 0:
     number = int(input("\nPick a whole number between 1 and 10: \n"))
-    print("You picked: ", number)
+    # print("You picked: ", number)
 
 # Main program scope. This is the loop that will run while there are items inside the container.
 while number > 0:
 
     # fill up the container with balls
     fill_container(number)
+    print(f'{len(container)} colored balls fill the container!')
 
     # fill a counter to keep track of the number of items inside the container.
     ball_counter = Counter(container)
-    print(ball_counter)
+    # print(ball_counter)
 
     # set up the main game loop.
     while len(container) > 0:
@@ -82,8 +82,10 @@ while number > 0:
             print(f'You picked {next_pick}.')
 
         remove_ball(container, removed)
+        results.append((next_pick, removed[0]))
+        print(results)
         number -= 1
-        print("Total number of balls left in the hat: ", number)
+        print("Total number of balls left in the hat: ", len(container))
         print(removed[0])
 
         # print("\nChance of getting a yellow ball: ", percentage("yellow"))
