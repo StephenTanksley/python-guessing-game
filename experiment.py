@@ -9,7 +9,7 @@ from collections import Counter
 number = 0
 
 if number == 0:
-    number = int(input("Pick a whole number between 1 and 10: \n"))
+    number = int(input("\nPick a whole number between 1 and 10: \n"))
     print("You picked: ", number)
 else:
     number
@@ -35,23 +35,7 @@ def fill_container(user_number):
         container.append(pick_ball(colored_balls))
 
 # I want to calculate the percentage chance of picking a certain color of ball.
-
 # The formula for percentages: (color_ball / total) * 100
-
-
-fill_container(number)
-ball_counter = Counter(container)
-print(ball_counter)
-
-
-def remove_ball(color):
-    index = container.index(color)
-    removed = container.pop(index)
-    ball_counter[color] -= 1
-    print(container, removed)
-
-
-print("blue balls in the ball counter: ", ball_counter["blue"])
 
 
 def percentage(color):
@@ -59,6 +43,34 @@ def percentage(color):
     return percent
 
 
-print("Chance of getting a yellow ball: ", percentage("yellow"))
-print("Chance of getting a blue ball: ", percentage("blue"))
-print("Chance of getting a red ball: ", percentage("red"))
+fill_container(number)
+ball_counter = Counter(container)
+print(ball_counter)
+
+
+# I want to use this function to remove a ball at random from the container.
+def remove_ball(ball_container):
+    index = math.floor(random() * len(ball_container))
+    print(index)
+    # print("here's the index: ", index)
+    # print(container)
+    # print(container[index])
+    removed = container.pop(index)
+    # print("removed: ", removed)
+    # ball_counter[removed] -= 1
+    return removed
+
+
+print(container)
+print(remove_ball(container))
+
+
+# print("\nChance of getting a yellow ball: ", percentage("yellow"))
+# print("\nChance of getting a blue ball: ", percentage("blue"))
+# print("\nChance of getting a red ball: ", percentage("red"))
+
+
+if len(container) > 0:
+
+    next_step = input(
+        "\nWhat color ball are you hoping to get on your next pick?\n('red', 'yellow', or 'blue') \n")
